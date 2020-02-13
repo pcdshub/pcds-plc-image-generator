@@ -1,0 +1,75 @@
+;-------------------------------------------------------------------------------
+; PCT V03 and V04 - USB Touch Driver for Windows CE 6.0
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Drivers\USBTouch]
+    "DLL"="USBTouch.dll"
+    "Prefix"="TUB"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823_1\0_0_0\255_255_255\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823\0_0_0\255_255_255\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+
+;for Hid class
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823_1\Default\3\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823\Default\3\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\TouchKit]
+    ;if want to rotate touch to 90 degree
+    ;"FLAGS"=dword:201
+    ;"FixedRotateInfo"=dword:1
+
+    ;if want to rotate touch to 180 degree
+    ;"FLAGS"=dword:201
+    ;"FixedRotateInfo"=dword:2
+
+    ;if want to rotate touch to 270 degree
+    ;"FLAGS"=dword:201
+    ;"FixedRotateInfo"=dword:3
+
+    "FLAGS"=dword:1
+    "FixedRotateInfo"=dword:0
+
+    "RBEnable"=dword:0
+    "RBSIZE"=dword:0
+    "RBTIME"=dword:FFFFFF
+    "BeepFrequence"=dword:1F4
+    "BeepTime"=dword:64
+
+    "ZFilterThreshold"=dword:800
+    "ZFilterBound"=dword:00100001
+    "SoundType"=dword:0
+    "NoPostRange"=dword:80
+    "SECDisable"=dword:1
+    "HalfVGA"=dword:0
+
+    "CalSource"=dword:0
+    "LLX"=dword:66
+    "LLY"=dword:66
+    "LRX"=dword:799
+    "LRY"=dword:66
+    "ULX"=dword:66
+    "ULY"=dword:799
+    "URX"=dword:799
+    "URY"=dword:799
+
+[HKEY_LOCAL_MACHINE\Drivers\TouchKit]
+    "DRAWTEST"="Draw Test"
+    "Cal4Pts"="4 pts Cal"
+    "Cal25Pts"="25 pts Cal"
+    "Quit"="Exit"
+    "UpdateEEPROM"="Update EEPROM from File"
+    "Sound"="Sound"
+    "NoSound"="No Sound"
+    "SoundDown"="Touch Down"
+    "SoundUp"="Lift Up"
+    "Clear"="Clear"
+    "Message"="Message"
+    "EEPROMFail"="Access EEPROM fail!"
+    "CalHint"="Please touch the blinking symbol until stop blinking."
+    "HwInfo"="Hardware Information"
+    "FwVersion"="Firmware version"
+    "ModelName"="Model Name"
+    "About"="About"

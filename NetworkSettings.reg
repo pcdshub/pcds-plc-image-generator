@@ -1,0 +1,16 @@
+;-------------------------------------------------------------------------------
+; Configure network adapters X1 (X000) and X2 (X001)
+;-------------------------------------------------------------------------------
+
+[HKEY_LOCAL_MACHINE\Comm\PCI\TcI8254x1\Parms\TcpIp]
+    ; X000
+    "EnableDHCP"=dword:1
+
+[HKEY_LOCAL_MACHINE\Comm\PCI\TcI8254x2\Parms\TcpIp]
+    ; X001
+    "EnableDHCP"=dword:1
+
+; For a static IP address, use the following:
+;   "EnableDHCP"=dword:0
+;   "IpAddress"="192.168.1.10"
+;   "SubnetMask"="255.255.255.0"

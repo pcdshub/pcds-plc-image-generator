@@ -1,0 +1,175 @@
+;-------------------------------------------------------------------------------
+; Enable Firewall settings on Beckhoff Automation Windows CE 6.0 devices
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall]
+    "EnableIPv6"=dword:00000001
+    "EnableIPv4"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall]
+    "persist"   =dword:00000001
+
+;-------------------------------------------------------------------------------
+; Remove default rules
+;-------------------------------------------------------------------------------
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\AllowICMP_ECHO_REPLY]
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\AllowICMP_ECHO_REQUEST]
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\BlockOutboundICMP]
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\DHCPUnicastResponse]
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\SourceBroadcast]
+[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\SourceLoopback]
+
+;-------------------------------------------------------------------------------
+; Allow "ICMP echo request"
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule1]
+    "Description"   ="CxConfigFWRule-00010001-0040/Allow ICMP echo request"
+    "Protocol"      =dword:00000001
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000038
+    "Flags"         =dword:0000000A
+    "Type"          =dword:00000008
+    "Code"          =dword:00000000
+
+;-------------------------------------------------------------------------------
+; Allow "DHCP Unicast Response" on UDP Port 68
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule2]
+    "Description"   ="CxConfigFWRule-00010001-0041/DHCP Unicast Response"
+    "Port"          =dword:00000044
+    "Protocol"      =dword:00000011
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow Hypertext Transfer Protocol (HTTP) on TCP Port 80
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule3]
+    "Description"   ="CxConfigFWRule-00010001-0041/HTTP"
+    "Port"          =dword:00000050
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow Hypertext Transfer Protocol over SSL/TLS (HTTPS) on TCP Port 443
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule4]
+    "Description"   ="CxConfigFWRule-00010001-0041/HTTPS"
+    "Port"          =dword:000001BB
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow CE Remote Display "CERHost" on TCP Port 987 (0x3DB)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule5]
+    "Description"   ="CxConfigFWRule-00010001-0041/CERHost"
+    "Port"          =dword:000003DB
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow IPC-Diagnostic UA on TCP Port 4852 (0x12F4)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule6]
+    "Description"   ="CxConfigFWRule-00010001-0041/IPCDiagUA"
+    "Port"          =dword:000012F4
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow TwinCAT ADS on TCP Port 48898 (0xBF02)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule7]
+    "Description"   ="CxConfigFWRule-00010001-0041/TwinCAT ADS TCP"
+    "Port"          =dword:0000BF02
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow TwinCAT ADS on UDP Port 48899 (0xBF03)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule8]
+    "Description"   ="CxConfigFWRule-00010001-0041/TwinCAT ADS UDP"
+    "Port"          =dword:0000BF03
+    "Protocol"      =dword:00000011
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow File Transfer Protocol (FTP) on TCP Port 21 - 22
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule9]
+    "Description"   ="CxConfigFWRule-00010001-0041/FTP"
+    "PortMin"       =dword:00000014
+    "PortMax"       =dword:00000015
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow Telnet on TCP Port 23
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule10]
+    "Description"   ="CxConfigFWRule-00010001-0041/Telnet"
+    "Port"          =dword:00000017
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow NetBIOS Sessions Service on TCP Port 139
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule11]
+    "Description"   ="CxConfigFWRule-00010001-0041/NetBIOS"
+    "Port"          =dword:0000008B
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow Simple Network Management Protocol SNMP on UDP Port 161
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule12]
+    "Description"   ="CxConfigFWRule-00010001-0041/Simple Network Management Protocol"
+    "Port"          =dword:000000A1
+    "Protocol"      =dword:00000011
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow SMB Shares on TCP Port 445
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule13]
+    "Description"   ="CxConfigFWRule-00010001-0041/SMB"
+    "Port"          =dword:000001BD
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A
+
+;-------------------------------------------------------------------------------
+; Allow Web Services for Devices on TCP Port 5357
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule14]
+    "Description"   ="CxConfigFWRule-00010001-0041/Web Services for Devices"
+    "Port"          =dword:000014ED
+    "Protocol"      =dword:00000006
+    "PrivateHost"   =hex:02,00
+    "Mask"          =dword:00000024
+    "Flags"         =dword:0000000A

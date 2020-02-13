@@ -1,0 +1,49 @@
+;-------------------------------------------------------------------------------
+; Microsoft SQL Server Compact Edition v3.5 components
+;-------------------------------------------------------------------------------
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\InprocServer32]
+@="sqlceoledb35.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\ProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.ErrorLookup.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\VersionIndependentProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.ErrorLookup"
+
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+"OLEDB_SERVICES"=dword:fffffffe
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ExtendedErrors]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ExtendedErrors\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}]
+@="Microsoft SQL Server Compact OLE DB Provider for WindowsError Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\InprocServer32]
+@="sqlceoledb35.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\VersionIndependentProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB"
+
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5\CLSID]
+@="{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5Errors]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5Errors\Clsid]
+@="{90A1998A-EB21-4F61-872F-F4DFDE1065D6}"

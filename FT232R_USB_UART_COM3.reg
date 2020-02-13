@@ -1,0 +1,30 @@
+;-------------------------------------------------------------------------------
+; FDTI USB 2 COM Adapter Settings for COM3:
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\FTDI_DEVICE]
+    "Version"="1.1.0.6"
+    "Prefix"="COM"
+    "Dll"="ftdi_ser.dll"
+    "Index"=dword:00000003
+    "InitialIndex"=dword:00000003
+    "DeviceArrayIndex"=dword:00000003
+    "LatencyTimer"=dword:00000010
+    "ActiveSyncSetting"=dword:0003e880
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\FTDI_DEVICE\Unimodem]
+    "DevConfig"=hex:10,00,00,00,05,00,00,00,10,01,00,00,00,4b,00,00,00,00,08,00,00,00,00,00,00
+    "FriendlyName"="Serial Cable on COM3:"
+    "DeviceType"=dword:00000000
+    "Tsp"="Unimodem.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\1027_24577\Default\Default\FTDI_DEVICE]
+    "DLL"="ftdi_ser.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\1027_24592\Default\Default\FTDI_DEVICE]
+    "DLL"="ftdi_ser.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\1027_24593\Default\Default\FTDI_DEVICE]
+    "DLL"="ftdi_ser.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\1027_24594\Default\Default\FTDI_DEVICE]
+    "DLL"="ftdi_ser.dll"

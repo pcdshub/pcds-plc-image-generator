@@ -1,13 +1,13 @@
 ;-------------------------------------------------------------------------------
-; Configure network adapters X1 (X000) and X2 (X001)
+; Configure network adapters X1 (X001) and X2 (X000)
 ;-------------------------------------------------------------------------------
 
 [HKEY_LOCAL_MACHINE\Comm\PCI\TcI8254x1\Parms\TcpIp]
-    ; X000
+    ; X001
     "EnableDHCP"=dword:1
 
 [HKEY_LOCAL_MACHINE\Comm\PCI\TcI8254x2\Parms\TcpIp]
-    ; X001
+    ; X000
     "EnableDHCP"=dword:1
 
 ; For a static IP address, use the following:

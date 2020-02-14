@@ -40,7 +40,8 @@ def write_files(plc_name, ip_address, plc_description=None):
     )
 
     for fn in REGISTRY_FILES:
-        template = jinja_env.get_template(str(fn.parts[-1]))
+        fn = str(fn.parts[-1])
+        template = jinja_env.get_template(fn)
         rendered = template.render(**settings)
 
         print('\n\nTemplate:', fn)

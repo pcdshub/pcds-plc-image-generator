@@ -1,0 +1,11 @@
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\TwinCAT3\System]
+    "AmsNetId"=hex:ac,15,94,91,01,01
+    "TcAdsWin32"=dword:1
+    "LockedMemSize"=dword:2000000
+    "SysLogFileSize"=dword:1000
+    "SysLogFilePath"="\Hard Disk\log.txt"
+    "SysUpsTimeout"=dword:1E
+    "SysRTimeExtSyncMultiplier"=dword:1
+    "RunAsDevice"=dword:1
+    "DefaultAdapter"="PCI\TCI8254X1"
+    "DefaultAdapterRegPath"="\Comm\PCI\TcI8254x1"

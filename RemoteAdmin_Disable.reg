@@ -1,5 +1,0 @@
-;-------------------------------------------------------------------------------
-; Disable 'Windows CE Remote Management Tool' websites
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\COMM\HTTPD\VROOTS\/remoteadmin]
-    "Default"="\windows\_REMOTEADMIN.dll"

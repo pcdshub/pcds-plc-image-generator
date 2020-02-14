@@ -1,0 +1,11 @@
+;-------------------------------------------------------------------------------
+; Add Tc3PlcHmiWeb virtual roots for x86 WinCE 6.0 devices
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\HTTPD\VROOTS\/Tc3PlcHmiWebService]
+    "Default"="\Hard Disk\TwinCAT\3.1\Components\Plc\Tc3PlcHmiWeb\Tc3PlcHmiWebServiceCE6x86.dll"
+
+[HKEY_LOCAL_MACHINE\Comm\HTTPD\VROOTS\/Tc3PlcHmiWeb]
+    "Default"="\Hard Disk\TwinCAT\3.1\Boot\Plc\"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\MDP\InfoFiles]
+    "Tc3PlcHmiWebServiceCE6x86.dll" ="\Hard Disk\TwinCAT\3.1\Components\Plc\Tc3PlcHmiWeb\Tc3PlcHmiWebServiceCE6x86.dll"

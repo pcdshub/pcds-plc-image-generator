@@ -2,7 +2,7 @@
 ; Set the beckhoff wallpaper and the background color of the desktop window
 ;----------------------------------------------------------------------------
 [HKEY_CURRENT_USER\ControlPanel\Desktop]
-    "wallpaper"="\Hard Disk\RegFiles\lcls-logo.png"
+    "wallpaper"="\Hard Disk\System\lcls-logo.png"
 
 [HKEY_LOCAL_MACHINE\SYSTEM\GWE]
     "SysColor"=hex:\

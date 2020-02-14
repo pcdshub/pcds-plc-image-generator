@@ -4,13 +4,15 @@ import ipaddress
 import jinja2
 
 
-# Registry files are in this directory
 MODULE_PATH = pathlib.Path(__file__).parent
 
-# And should be dumped out in the parent directory
-OUTPUT_PATH = MODULE_PATH.parent
+# Registry files are in this directory / template
+TEMPLATE_PATH = (MODULE_PATH / 'templates').absolute()
 
-REGISTRY_FILES = MODULE_PATH.glob('*.reg')
+# And should be dumped out in the parent directory
+OUTPUT_PATH = MODULE_PATH / 'to_copy' / 'RegFiles'
+
+REGISTRY_FILES = TEMPLATE_PATH.glob('*.reg')
 
 
 def write_files(plc_name, ip_address, plc_description=None):
@@ -25,7 +27,7 @@ def write_files(plc_name, ip_address, plc_description=None):
     plc_ip_address = list(ipv4.packed)
 
     jinja_env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(str(MODULE_PATH)),
+        loader=jinja2.FileSystemLoader(str(TEMPLATE_PATH)),
         trim_blocks=True,
         lstrip_blocks=True,
     )
@@ -38,7 +40,7 @@ def write_files(plc_name, ip_address, plc_description=None):
     )
 
     for fn in REGISTRY_FILES:
-        template = jinja_env.get_template(str(fn))
+        template = jinja_env.get_template(str(fn.parts[-1]))
         rendered = template.render(**settings)
 
         print('\n\nTemplate:', fn)

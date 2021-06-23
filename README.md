@@ -14,3 +14,10 @@ Registry files for initial configuration of Beckhoff CX50xx PLCs
    \RegFiles using explorer and double click:
     a. `ident.reg` 
     b. `ams_net_id.reg`
+
+
+Notes
+-----
+
+* X000 is MAC ID 2
+* X001 is MAC ID 1

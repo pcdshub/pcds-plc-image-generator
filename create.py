@@ -88,6 +88,9 @@ def generate_image(plc_name, ip_address, plc_description):
     print(f"* Copying {image_root/image_name} to {plc_root}")
     shutil.copytree(image_root / image_name, plc_root, dirs_exist_ok=True)
 
+    print(f"* Removing default RegFiles in {plc_root/'RegFiles'}")
+    shutil.rmtree(plc_root / "RegFiles")
+
     print(f"* Copying {TO_COPY_PATH} to {plc_root}")
     shutil.copytree(TO_COPY_PATH, plc_root, dirs_exist_ok=True)
 

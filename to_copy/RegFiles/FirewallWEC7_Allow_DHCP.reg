@@ -1,0 +1,21 @@
+;-------------------------------------------------------------------------------
+; WEC7 - A sample firewall rule, likely needed by many users - allow DHCP
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall]
+    "FwEnabled" =dword:00000001
+    "persist"   =dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\BlockAllRule]
+    "BlockAllFilterId"=hex:00,00,01,00,00,00,00,00
+
+;-------------------------------------------------------------------------------
+; Allow "DHCP Unicast Response" on UDP Port 68
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule1]
+    "Description"   ="DHCP Unicast Response"
+    "Verbose"       ="Allow UDP port 68 from anywhere on the public network"
+    "PortMin"       =dword:00000044
+    "PortMax"       =dword:00000044
+    "Protocol"      =dword:00000011
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000

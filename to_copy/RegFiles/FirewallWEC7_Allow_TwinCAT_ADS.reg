@@ -1,0 +1,36 @@
+;-------------------------------------------------------------------------------
+; WEC7 Firewall Settings:
+; - Allow TwinCAT ADS on Port 48898 and 48899
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall]
+    "FwEnabled" =dword:00000001
+    "persist"   =dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\BlockAllRule]
+    "BlockAllFilterId"=hex:00,00,01,00,00,00,00,00
+
+;-------------------------------------------------------------------------------
+; Allow TwinCAT ADS on TCP Port 48898 (0xBF02)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule1]
+    "Description"   ="TwinCAT ADS TCP"
+    "Verbose"       ="Allow TCP port 48898 from anywhere on the public network"
+    "filterId"      =hex:10,00,01,00,00,00,00,00
+    "PortMin"       =dword:0000BF02
+    "PortMax"       =dword:0000BF02
+    "Protocol"      =dword:00000006
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
+
+;-------------------------------------------------------------------------------
+; Allow TwinCAT ADS on UDP Port 48899 (0xBF03)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule2]
+    "Description"   ="TwinCAT ADS UDP"
+    "Verbose"       ="Allow UDP port 48899 from anywhere on the public network"
+    "filterId"      =hex:11,00,01,00,00,00,00,00
+    "PortMin"       =dword:0000BF03
+    "PortMax"       =dword:0000BF03
+    "Protocol"      =dword:00000011
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000

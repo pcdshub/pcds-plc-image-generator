@@ -85,25 +85,12 @@
     "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
-; Allow TwinCAT SecureADS on TCP Port 8016 (0x1F50)
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule7]
-    "Description"   ="TwinCAT SecureADS TCP"
-    "Verbose"       ="Allow TCP port 8016 from anywhere on the public network"
-    "filterId"      =hex:0f,00,01,00,00,00,00,00
-    "PortMin"       =dword:00001F50
-    "PortMax"       =dword:00001F50
-    "Protocol"      =dword:00000006
-    "Mask"          =dword:00000041
-    "Flags"         =dword:00000000
-
-;-------------------------------------------------------------------------------
 ; Allow TwinCAT ADS on TCP Port 48898 (0xBF02)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule8]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule7]
     "Description"   ="TwinCAT ADS TCP"
     "Verbose"       ="Allow TCP port 48898 from anywhere on the public network"
-    "filterId"      =hex:10,00,01,00,00,00,00,00
+    "filterId"      =hex:0f,00,01,00,00,00,00,00
     "PortMin"       =dword:0000BF02
     "PortMax"       =dword:0000BF02
     "Protocol"      =dword:00000006
@@ -113,10 +100,10 @@
 ;-------------------------------------------------------------------------------
 ; Allow TwinCAT ADS on UDP Port 48899 (0xBF03)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule9]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule8]
     "Description"   ="TwinCAT ADS UDP"
     "Verbose"       ="Allow UDP port 48899 from anywhere on the public network"
-    "filterId"      =hex:11,00,01,00,00,00,00,00
+    "filterId"      =hex:10,00,01,00,00,00,00,00
     "PortMin"       =dword:0000BF03
     "PortMax"       =dword:0000BF03
     "Protocol"      =dword:00000011

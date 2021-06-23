@@ -1,0 +1,5 @@
+;-------------------------------------------------------------------------------
+; Add Tc3PlcHmi file information for x86 WEC7 devices
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\MDP\InfoFiles]
+    "Tc3PlcHmiCE7x86.exe" ="\Hard Disk\TwinCAT\3.1\Components\Plc\Tc3PlcHmi\Tc3PlcHmiCE7x86.exe"

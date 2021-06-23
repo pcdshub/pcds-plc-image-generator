@@ -1,0 +1,5 @@
+;-------------------------------------------------------------------------------
+; Set 'Administrator' as TwinCAT ADS user
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Software\Beckhoff\TwinCAT3]
+    "ADSUserList"="Administrator"

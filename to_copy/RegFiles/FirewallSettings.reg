@@ -1,175 +1,124 @@
 ;-------------------------------------------------------------------------------
-; Enable Firewall settings on Beckhoff Automation Windows CE 6.0 devices
+; Enable Firewall settings on Beckhoff Automation WEC 7 devices
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall]
-    "EnableIPv6"=dword:00000001
-    "EnableIPv4"=dword:00000001
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall]
+    "FwEnabled" =dword:00000001
     "persist"   =dword:00000001
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\BlockAllRule]
+    "BlockAllFilterId"=hex:00,00,01,00,00,00,00,00
+
 ;-------------------------------------------------------------------------------
-; Remove default rules
+; Allow connection to local host on any TCP and UDP port
 ;-------------------------------------------------------------------------------
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\AllowICMP_ECHO_REPLY]
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\AllowICMP_ECHO_REQUEST]
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\BlockOutboundICMP]
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\DHCPUnicastResponse]
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\SourceBroadcast]
-[-HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\SourceLoopback]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule1]
+    "Description"   ="Localhost TCP and UDP"
+    "Verbose"       ="Allow any Port only for IP 127.0.0.1"
+    "filterId"      =hex:09,00,01,00,00,00,00,00
+    "IPv4address"   ="127.0.0.1"
+    "Mask"          =dword:20
+    "Flags"         =dword:0
 
 ;-------------------------------------------------------------------------------
 ; Allow "ICMP echo request"
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule1]
-    "Description"   ="CxConfigFWRule-00010001-0040/Allow ICMP echo request"
-    "Protocol"      =dword:00000001
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000038
-    "Flags"         =dword:0000000A
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule2]
+    "Description"   ="Allow ICMP echo request"
+    "Verbose"       ="Allow ICMP type 8, code 0"
+    "filterId"      =hex:0a,00,01,00,00,00,00,00
     "Type"          =dword:00000008
     "Code"          =dword:00000000
+    "Protocol"      =dword:00000001
+    "Mask"          =dword:00000040
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow "DHCP Unicast Response" on UDP Port 68
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule2]
-    "Description"   ="CxConfigFWRule-00010001-0041/DHCP Unicast Response"
-    "Port"          =dword:00000044
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule3]
+    "Description"   ="DHCP Unicast Response"
+    "Verbose"       ="Allow UDP port 68 from anywhere on the public network"
+    "filterId"      =hex:0b,00,01,00,00,00,00,00
+    "PortMin"       =dword:00000044
+    "PortMax"       =dword:00000044
     "Protocol"      =dword:00000011
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow Hypertext Transfer Protocol (HTTP) on TCP Port 80
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule3]
-    "Description"   ="CxConfigFWRule-00010001-0041/HTTP"
-    "Port"          =dword:00000050
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow Hypertext Transfer Protocol over SSL/TLS (HTTPS) on TCP Port 443
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule4]
-    "Description"   ="CxConfigFWRule-00010001-0041/HTTPS"
-    "Port"          =dword:000001BB
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule4]
+    "Description"   ="HTTPS"
+    "Verbose"       ="Allow TCP port 443 from anywhere on the public network"
+    "filterId"      =hex:0c,00,01,00,00,00,00,00
+    "PortMin"       =dword:000001BB
+    "PortMax"       =dword:000001BB
     "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow CE Remote Display "CERHost" on TCP Port 987 (0x3DB)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule5]
-    "Description"   ="CxConfigFWRule-00010001-0041/CERHost"
-    "Port"          =dword:000003DB
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule5]
+    "Description"   ="CERHost"
+    "Verbose"       ="Allow TCP port 987 from anywhere on the public network"
+    "filterId"      =hex:0d,00,01,00,00,00,00,00
+    "PortMin"       =dword:000003DB
+    "PortMax"       =dword:000003DB
     "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow IPC-Diagnostic UA on TCP Port 4852 (0x12F4)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule6]
-    "Description"   ="CxConfigFWRule-00010001-0041/IPCDiagUA"
-    "Port"          =dword:000012F4
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule6]
+    "Description"   ="IPCDiagUA"
+    "Verbose"       ="Allow TCP port 4852 from anywhere on the public network"
+    "filterId"      =hex:0e,00,01,00,00,00,00,00
+    "PortMin"       =dword:000012F4
+    "PortMax"       =dword:000012F4
     "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
+
+;-------------------------------------------------------------------------------
+; Allow TwinCAT SecureADS on TCP Port 8016 (0x1F50)
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule7]
+    "Description"   ="TwinCAT SecureADS TCP"
+    "Verbose"       ="Allow TCP port 8016 from anywhere on the public network"
+    "filterId"      =hex:0f,00,01,00,00,00,00,00
+    "PortMin"       =dword:00001F50
+    "PortMax"       =dword:00001F50
+    "Protocol"      =dword:00000006
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow TwinCAT ADS on TCP Port 48898 (0xBF02)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule7]
-    "Description"   ="CxConfigFWRule-00010001-0041/TwinCAT ADS TCP"
-    "Port"          =dword:0000BF02
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule8]
+    "Description"   ="TwinCAT ADS TCP"
+    "Verbose"       ="Allow TCP port 48898 from anywhere on the public network"
+    "filterId"      =hex:10,00,01,00,00,00,00,00
+    "PortMin"       =dword:0000BF02
+    "PortMax"       =dword:0000BF02
     "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000
 
 ;-------------------------------------------------------------------------------
 ; Allow TwinCAT ADS on UDP Port 48899 (0xBF03)
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule8]
-    "Description"   ="CxConfigFWRule-00010001-0041/TwinCAT ADS UDP"
-    "Port"          =dword:0000BF03
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule9]
+    "Description"   ="TwinCAT ADS UDP"
+    "Verbose"       ="Allow UDP port 48899 from anywhere on the public network"
+    "filterId"      =hex:11,00,01,00,00,00,00,00
+    "PortMin"       =dword:0000BF03
+    "PortMax"       =dword:0000BF03
     "Protocol"      =dword:00000011
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow File Transfer Protocol (FTP) on TCP Port 21 - 22
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule9]
-    "Description"   ="CxConfigFWRule-00010001-0041/FTP"
-    "PortMin"       =dword:00000014
-    "PortMax"       =dword:00000015
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow Telnet on TCP Port 23
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule10]
-    "Description"   ="CxConfigFWRule-00010001-0041/Telnet"
-    "Port"          =dword:00000017
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow NetBIOS Sessions Service on TCP Port 139
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule11]
-    "Description"   ="CxConfigFWRule-00010001-0041/NetBIOS"
-    "Port"          =dword:0000008B
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow Simple Network Management Protocol SNMP on UDP Port 161
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule12]
-    "Description"   ="CxConfigFWRule-00010001-0041/Simple Network Management Protocol"
-    "Port"          =dword:000000A1
-    "Protocol"      =dword:00000011
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow SMB Shares on TCP Port 445
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule13]
-    "Description"   ="CxConfigFWRule-00010001-0041/SMB"
-    "Port"          =dword:000001BD
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
-
-;-------------------------------------------------------------------------------
-; Allow Web Services for Devices on TCP Port 5357
-;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\Comm\Firewall\Rules\rule14]
-    "Description"   ="CxConfigFWRule-00010001-0041/Web Services for Devices"
-    "Port"          =dword:000014ED
-    "Protocol"      =dword:00000006
-    "PrivateHost"   =hex:02,00
-    "Mask"          =dword:00000024
-    "Flags"         =dword:0000000A
+    "Mask"          =dword:00000041
+    "Flags"         =dword:00000000

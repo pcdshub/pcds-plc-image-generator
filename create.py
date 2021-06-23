@@ -1,5 +1,7 @@
 import pathlib
 import ipaddress
+import shutil
+import zipfile
 
 import jinja2
 
@@ -7,15 +9,13 @@ import jinja2
 MODULE_PATH = pathlib.Path(__file__).parent
 
 # Registry files are in this directory / template
-TEMPLATE_PATH = (MODULE_PATH / 'templates').absolute()
-
-# And should be dumped out in the parent directory
-OUTPUT_PATH = MODULE_PATH / 'to_copy' / 'RegFiles'
+TEMPLATE_PATH = (MODULE_PATH / 'src' / 'templates').absolute()
+TO_COPY_PATH = (MODULE_PATH / 'src' / 'to_copy').absolute()
 
 REGISTRY_FILES = TEMPLATE_PATH.glob('*.reg')
 
 
-def write_files(plc_name, ip_address, plc_description=None):
+def write_files(regfiles_path, plc_name, ip_address, plc_description=None):
     plc_name = plc_name.strip()
 
     assert len(plc_name), 'PLC name cannot be empty'
@@ -49,16 +49,43 @@ def write_files(plc_name, ip_address, plc_description=None):
         print(rendered)
         print('-------------------')
 
-        with open(OUTPUT_PATH / fn, 'wt') as f:
+        with open(regfiles_path / fn, 'wt') as f:
             print(rendered, file=f)
 
 
-def main():
-    plc_name = input('PLC name?')
-    plc_description = input('PLC description?') or None
-    ip_address = input('IP Address to be used for AMS NetID?')
+def extract_plc_image(image_zipfile, destination):
+    with zipfile.ZipFile(image_zipfile, 'r') as zf:
+        zf.extractall(destination)
 
+
+def main():
+    plc_name = input('PLC name? ')
+    plc_description = input('PLC description? ') or None
+    ip_address = input('IP Address to be used for AMS NetID? ')
+
+    image_root = MODULE_PATH / 'images'
+    plc_root = MODULE_PATH / 'images' / plc_name
+
+    if plc_root.exists():
+        if input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
+            shutil.rmtree(plc_root)
+
+    print(f"* Creating {plc_root}")
+    plc_root.mkdir(exist_ok=True, parents=True)
+
+    image_name = "CBxx63_WEC7_HPS_v608g_TC31_B4024.10"
+    print(f"* Extracting {image_name} to {image_root}")
+    extract_plc_image(f"{image_name}.zip", image_root)
+
+    print(f"* Copying {image_root/image_name} to {plc_root}")
+    shutil.copytree(image_root / image_name, plc_root, dirs_exist_ok=True)
+
+    print(f"* Copying {TO_COPY_PATH} to {plc_root}")
+    shutil.copytree(TO_COPY_PATH, plc_root, dirs_exist_ok=True)
+    
+    print(f"* Writing templates to {plc_root/'RegFiles'}")
     write_files(
+        regfiles_path=plc_root / 'RegFiles',
         plc_name=plc_name,
         plc_description=plc_description,
         ip_address=ip_address

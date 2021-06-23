@@ -72,7 +72,7 @@ def interactive_main():
 
 def generate_image(plc_name, ip_address, plc_description):
     image_root = pathlib.Path("images").resolve()
-    plc_root = image_root / "images" / plc_name
+    plc_root = image_root / plc_name
 
     if plc_root.exists():
         if input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
@@ -83,7 +83,7 @@ def generate_image(plc_name, ip_address, plc_description):
 
     image_name = "CBxx63_WEC7_HPS_v608g_TC31_B4024.10"
     print(f"* Extracting {image_name} to {image_root}")
-    extract_plc_image(f"{image_name}.zip", image_root)
+    extract_plc_image(MODULE_PATH / f"{image_name}.zip", image_root)
 
     print(f"* Copying {image_root/image_name} to {plc_root}")
     shutil.copytree(image_root / image_name, plc_root, dirs_exist_ok=True)

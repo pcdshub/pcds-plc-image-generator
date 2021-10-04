@@ -1,2 +1,3 @@
 jinja2
+pyinstaller
 # python >=3.8

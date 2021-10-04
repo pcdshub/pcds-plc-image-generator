@@ -19,7 +19,7 @@ TEMPLATE_PATH = (MODULE_PATH / "src" / "templates").absolute()
 TO_COPY_PATH = (MODULE_PATH / "src" / "to_copy").absolute()
 
 REGISTRY_FILES = TEMPLATE_PATH.glob("*.reg")
-
+IMAGE_ROOT = pathlib.Path.cwd()
 
 MODEL_TO_URL = {
     "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
@@ -125,13 +125,17 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
             f"Invalid PLC model; choose from {tuple(MODEL_TO_URL)}"
         )
 
-    image_name = pathlib.Path(pathlib.Path(image_url).name)
-    if not image_name.exists():
-        print(f"{image_name} does not exist; downloading it from {image_url}...")
-        urllib.request.urlretrieve(image_url, image_name, reporthook=_download_status)
+    source_image_path = IMAGE_ROOT / pathlib.Path(image_url).name
+    if not source_image_path.exists():
+        print(f"{source_image_path} does not exist; downloading it from {image_url}...")
+        urllib.request.urlretrieve(
+            image_url,
+            source_image_path,
+            reporthook=_download_status
+        )
 
-    image_root = pathlib.Path("images").resolve()
-    plc_root = image_root / plc_name
+    dest_image_root = pathlib.Path("images").resolve()
+    plc_root = dest_image_root / plc_name
 
     if plc_root.exists():
         if auto_delete or input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
@@ -140,11 +144,11 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
     print(f"* Creating {plc_root}")
     plc_root.mkdir(exist_ok=True, parents=True)
 
-    print(f"* Extracting {image_name} to {image_root}")
-    extract_plc_image(MODULE_PATH / image_name, image_root)
+    print(f"* Extracting {source_image_path} to {dest_image_root}")
+    extract_plc_image(source_image_path, dest_image_root)
 
-    print(f"* Copying {image_root/image_name.stem} to {plc_root}")
-    shutil.copytree(image_root / image_name.stem, plc_root, dirs_exist_ok=True)
+    print(f"* Copying {source_image_path} to {plc_root}")
+    shutil.copytree(dest_image_root / source_image_path.stem, plc_root, dirs_exist_ok=True)
 
     print(f"* Removing default RegFiles in {plc_root/'RegFiles'}")
     shutil.rmtree(plc_root / "RegFiles")

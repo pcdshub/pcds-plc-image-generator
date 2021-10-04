@@ -1,1 +1,3 @@
 *.reg text eol=crlf
+*.py text eol=cr
+*.md text eol=cr

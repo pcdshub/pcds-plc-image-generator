@@ -1,5 +1,5 @@
 ;-------------------------------------------------------------------------------
-; Disable 'Windows CE Remote Management Tool' websites
+; Set 'Administrator' as TwinCAT ADS user
 ;-------------------------------------------------------------------------------
-[HKEY_LOCAL_MACHINE\COMM\HTTPD\VROOTS\/remoteadmin]
-    "Default"="\windows\_REMOTEADMIN.dll"
+[HKEY_LOCAL_MACHINE\Software\Beckhoff\TwinCAT3]
+    "ADSUserList"="Administrator"

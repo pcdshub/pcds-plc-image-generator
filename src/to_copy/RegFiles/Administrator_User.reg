@@ -1,0 +1,11 @@
+;-------------------------------------------------------------------------------
+; Set 'Administrator' as Beckhoff IPC Diagnostic website and SMB user
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\COMM\HTTPD\VROOTS\/Config]
+    "UserList"="Administrator"
+
+[HKEY_LOCAL_MACHINE\COMM\HTTPD\VROOTS\/MdpWebservice]
+    "UserList"="Administrator"
+
+[HKEY_LOCAL_MACHINE\Services\SMBServer\Shares\Public]
+    "UserList"="Administrator"

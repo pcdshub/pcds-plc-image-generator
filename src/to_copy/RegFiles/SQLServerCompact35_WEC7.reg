@@ -1,0 +1,237 @@
+;-------------------------------------------------------------------------------
+; Microsoft SQL Server Compact Edition v3.5 components for WEC 7
+;-------------------------------------------------------------------------------
+[HKEY_CLASSES_ROOT\CLSID\{a9d3060d-3526-4538-b13a-1913568daa0d}]
+@="Active SSCE  Engine Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{a9d3060d-3526-4538-b13a-1913568daa0d}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{a9d3060d-3526-4538-b13a-1913568daa0d}\ProgID]
+@="SSCE.Engine.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{7c7e6c99-bb8d-4718-aaa9-70c4320010de}]
+@="SSCE Param Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{7c7e6c99-bb8d-4718-aaa9-70c4320010de}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{7c7e6c99-bb8d-4718-aaa9-70c4320010de}\ProgID]
+@="SSCE.Param.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{7c7e6c99-bb8d-4718-aaa9-70c4320010de}\SSCE Param Object]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{9fd542d2-61c4-4e9f-a8e2-e6b8c7f64cbf}]
+@="SSCE Errors Collection"
+
+[HKEY_CLASSES_ROOT\CLSID\{9fd542d2-61c4-4e9f-a8e2-e6b8c7f64cbf}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{9fd542d2-61c4-4e9f-a8e2-e6b8c7f64cbf}\ProgID]
+@="SSCE.Errors.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{9fd542d2-61c4-4e9f-a8e2-e6b8c7f64cbf}\SSCE Errors Collection]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{455c3e04-bfe9-4089-8622-f2464ec3fddb}]
+@="SSCE Active Sync Engine Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{455c3e04-bfe9-4089-8622-f2464ec3fddb}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{455c3e04-bfe9-4089-8622-f2464ec3fddb}\ProgID]
+@="SSCE Active Sync Engine.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{455c3e04-bfe9-4089-8622-f2464ec3fddb}\SSCE Active Sync Engine Object]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{8cd1b98d-d8d5-4b51-9564-48b12a98698f}]
+@="Active SSCE Remote data access Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{8cd1b98d-d8d5-4b51-9564-48b12a98698f}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{8cd1b98d-d8d5-4b51-9564-48b12a98698f}\ProgID]
+@="SSCE.RemoteDataAccess.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{9e7e2cce-3f1f-4891-892c-ac8b486d03b2}]
+@="SSCE Params Collection"
+
+[HKEY_CLASSES_ROOT\CLSID\{9e7e2cce-3f1f-4891-892c-ac8b486d03b2}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{9e7e2cce-3f1f-4891-892c-ac8b486d03b2}\ProgID]
+@="SSCE.Params.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{9e7e2cce-3f1f-4891-892c-ac8b486d03b2}\SSCE Params Collection]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{ea91e968-ef93-4ff1-86f3-75cc93416df2}]
+@="Active SSCE Replication Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{ea91e968-ef93-4ff1-86f3-75cc93416df2}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{ea91e968-ef93-4ff1-86f3-75cc93416df2}\ProgID]
+@="SSCE.Replication.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{3018609e-cdbc-47e8-a255-809d46baa319}]
+@="SSCE DropTable Listener Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{3018609e-cdbc-47e8-a255-809d46baa319}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{3018609e-cdbc-47e8-a255-809d46baa319}\ProgID]
+@="SSCE.DropTableListener.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{3018609e-cdbc-47e8-a255-809d46baa319}\SSCE DropTable Listener Object]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{20347534-760b-464d-b572-285e6b618257}]
+@="SSCE Error Object"
+
+[HKEY_CLASSES_ROOT\CLSID\{20347534-760b-464d-b572-285e6b618257}\InprocServer32]
+@="sqlceca35.dll"
+"ThreadingModel"="Free"
+
+[HKEY_CLASSES_ROOT\CLSID\{20347534-760b-464d-b572-285e6b618257}\ProgID]
+@="SSCE.Error.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{20347534-760b-464d-b572-285e6b618257}\SSCE Error Object]
+@=""
+[HKEY_CLASSES_ROOT\SSCE Active Sync Engine.3.5]
+@="SSCE Active Sync Engine Object"
+
+[HKEY_CLASSES_ROOT\SSCE Active Sync Engine.3.5\CLSID]
+@="{455c3e04-bfe9-4089-8622-f2464ec3fddb}"
+
+[HKEY_CLASSES_ROOT\SSCE.DropTableListener.3.5]
+@="SSCE DropTable Listener Object"
+
+[HKEY_CLASSES_ROOT\SSCE.DropTableListener.3.5\CLSID]
+@="{3018609e-cdbc-47e8-a255-809d46baa319}"
+
+[HKEY_CLASSES_ROOT\SSCE.Engine.3.5]
+@="Active SSCE Engine Object"
+
+[HKEY_CLASSES_ROOT\SSCE.Engine.3.5\CLSID]
+@="{a9d3060d-3526-4538-b13a-1913568daa0d}"
+
+[HKEY_CLASSES_ROOT\SSCE.Error.3.5]
+@="SSCE Error Object"
+
+[HKEY_CLASSES_ROOT\SSCE.Error.3.5\CLSID]
+@="{20347534-760b-464d-b572-285e6b618257}"
+
+[HKEY_CLASSES_ROOT\SSCE.Errors.3.5]
+@="SSCE Errors Collection"
+
+[HKEY_CLASSES_ROOT\SSCE.Errors.3.5\CLSID]
+@="{9fd542d2-61c4-4e9f-a8e2-e6b8c7f64cbf}"
+
+[HKEY_CLASSES_ROOT\SSCE.Param.3.5]
+@="SSCE Param Object"
+
+[HKEY_CLASSES_ROOT\SSCE.Param.3.5\CLSID]
+@="{7c7e6c99-bb8d-4718-aaa9-70c4320010de}"
+
+[HKEY_CLASSES_ROOT\SSCE.Params.3.5]
+@="SSCE Params Collection"
+
+[HKEY_CLASSES_ROOT\SSCE.Params.3.5\CLSID]
+@="{9e7e2cce-3f1f-4891-892c-ac8b486d03b2}"
+
+[HKEY_CLASSES_ROOT\SSCE.RemoteDataAccess.3.5]
+@="Active SSCE remote data access Object"
+
+[HKEY_CLASSES_ROOT\SSCE.RemoteDataAccess.3.5\CLSID]
+@="{8cd1b98d-d8d5-4b51-9564-48b12a98698f}"
+
+[HKEY_CLASSES_ROOT\SSCE.Replication.3.5]
+@="Active SSCE Replication Object"
+
+[HKEY_CLASSES_ROOT\SSCE.Replication.3.5\CLSID]
+@="{ea91e968-ef93-4ff1-86f3-75cc93416df2}"
+
+
+[HKEY_CLASSES_ROOT\TypeLib\{CE4AACFA-3CFD-4028-B2D9-F272314F07C8}\3.5\0]
+@="sqlceca35.dll"
+
+[HKEY_CLASSES_ROOT\TypeLib\{CE4AACFA-3CFD-4028-B2D9-F272314F07C8}\3.5\0\win32]
+@="sqlceca35.dll"
+
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+"OLEDB_SERVICES"=dword:fffffffe
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ExtendedErrors]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ExtendedErrors\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\InprocServer32]
+@="sqlceoledb35.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\OLE DB Provider]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\ProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}\VersionIndependentProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\InprocServer32]
+@="sqlceoledb35.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\ProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.ErrorLookup.3.5"
+
+[HKEY_CLASSES_ROOT\CLSID\{90A1998A-EB21-4F61-872F-F4DFDE1065D6}\VersionIndependentProgID]
+@="Microsoft.SQLSERVER.CE.OLEDB.ErrorLookup"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5]
+@="Microsoft.SQLSERVER.CE.OLEDB.3.5"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5\CLSID]
+@="{F49C559D-E9E5-467C-8C18-3326AAE4EBCC}"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5Errors]
+@="Microsoft SQL Server Compact OLE DB Provider for Windows Error Lookup"
+
+[HKEY_CLASSES_ROOT\Microsoft.SQLSERVER.CE.OLEDB.3.5Errors\Clsid]
+@="{90A1998A-EB21-4F61-872F-F4DFDE1065D6}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server Compact Edition\v3.5]
+"InstallDir"="\Hard Disk\System"
+"NativeDir"="\Hard Disk\System"
+"Version"="3.5.8154.0"
+"ServicePackLevel"=dword:00000002
+"BuildMajor"=dword:00001FDA
+"BuildMinor"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server Compact Edition v3.5 Core]
+"BuildNum"=dword:00000000
+"MajorVersion"=dword:00000003
+"MinorVersion"=dword:00000005
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server Compact Edition v3.5 Replication]
+"BuildNum"=dword:00000000
+"MajorVersion"=dword:00000003
+"MinorVersion"=dword:00000005

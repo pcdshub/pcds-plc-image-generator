@@ -1,7 +1,7 @@
 ; Configure the PLC name + description
 [HKEY_LOCAL_MACHINE\Ident]
-    "Name"="plc-tst-proto2"
-    "Desc"="plc-tst-proto2 description"
+    "Name"="plc-tst-cx5120-1"
+    "Desc"="CX5120 Test"
     "DeviceType"="CX5000"
     "OrigName"="WindowsCE"
     "Username"="guest"

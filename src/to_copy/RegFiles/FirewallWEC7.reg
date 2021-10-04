@@ -1,0 +1,5 @@
+;-------------------------------------------------------------------------------
+; Overwrite firewall service path with "FirewallWEC.dll" from Beckhoff
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Services\FIREWALL]
+    "Dll"="FirewallWEC.Dll"

@@ -1,0 +1,18 @@
+; -----------------------------------------------------------------------------
+; Transport Layer Security (TLS) settings - in addition enable TLS 1.1 and 1.2
+; -----------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Comm\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client]
+    "Enabled"=dword:1
+    "DisabledByDefault"=dword:0
+
+[HKEY_LOCAL_MACHINE\Comm\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server]
+    "Enabled"=dword:1
+    "DisabledByDefault"=dword:0
+
+[HKEY_LOCAL_MACHINE\Comm\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client]
+    "Enabled"=dword:1
+    "DisabledByDefault"=dword:0
+
+[HKEY_LOCAL_MACHINE\Comm\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server]
+    "Enabled"=dword:1
+    "DisabledByDefault"=dword:0

@@ -1,0 +1,20 @@
+REGEDIT4
+; Export of registry keys on 2021-06-23 at 20:34
+; OS version: 7.0 build: 2882 image: CX51x0 HPS 6.08g
+
+[HKEY_LOCAL_MACHINE\Services\TIMESVC]
+    "Filter"=hex(7):7b,32,39,39,41,33,39,46,43,2d,34,43,46,32,2d,34,63,31,38,2d,39,41,31,37,2d,32,46,30,39,37,36,30,31,44,46,33,33,7d,00,00
+    "RecoveryRefresh"=dword:48190800
+    "Server"="psntp1.pcdsn"
+    "UserProcGroup"=dword:2
+    "Flags"=dword:10
+    "Dll"="sntpsvc.dll"
+    "Order"=dword:99
+    "Keep"=dword:1
+    "Prefix"="NTP"
+    "Index"=dword:0
+    "AutoUpdate"=dword:1
+    "ServerRole"=dword:1
+    "refresh"=dword:48190800
+    "threshold"=dword:5265C00
+    "trustlocalclock"=dword:0

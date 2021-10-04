@@ -1,0 +1,83 @@
+;-------------------------------------------------------------------------------
+; PCT V03 and V04 - USB Multitouch Driver for Windows Embedded Compact 7
+;-------------------------------------------------------------------------------
+[HKEY_LOCAL_MACHINE\Drivers\USBTouch]
+    "DLL"="USBTouch.dll"
+    "Prefix"="TUB"
+
+[HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\TOUCH]
+    "DriverName"="touch.dll"
+    "CalibrationData"="102,102 1945,102 1945,1945 102,1945"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823\0_0_0\255_255_255\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\3823\Default\3\USB_TOUCH_Driver]
+    "DLL"="USBTouch.dll"
+
+[HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\TOUCH]
+    "DriverName"="Touch.dll"
+    "CalibrationData"="102,102 1945,102 1945,1945 102,1945"
+    "MaxPt"=dword:10
+    "DropNum"=dword:2
+
+[HKEY_LOCAL_MACHINE\Drivers\TouchKit]
+    "DRAWTEST"="Draw Test"
+    "Cal4Pts"="4 pts Cal"
+    "Cal25Pts"="25 pts Cal"
+    "Quit"="Exit"
+    "UpdateEEPROM"="Update EEPROM from File"
+    "Sound"="Sound"
+    "NoSound"="No Sound"
+    "SoundDown"="Touch Down"
+    "SoundUp"="Lift Up"
+    "Clear"="Clear"
+    "Message"="Message"
+    "EEPROMFail"="Access EEPROM fail!"
+    "CalHint"="Please touch the blinking symbol until stop blinking."
+
+[HKEY_LOCAL_MACHINE\Drivers\TouchKit]
+;if want to rotate touch to 90 degree
+;"FLAGS"=dword:200
+;"FixedRotateInfo"=dword:1
+
+;if want to rotate touch to 180 degree
+;"FLAGS"=dword:200
+;"FixedRotateInfo"=dword:2
+
+;if want to rotate touch to 270 degree
+;"FLAGS"=dword:200
+;"FixedRotateInfo"=dword:3
+
+    "FLAGS"=dword:0
+    "FixedRotateInfo"=dword:0
+    "BeepFrequence"=dword:1F4
+    "BeepTime"=dword:64
+
+    "ZFilterThreshold"=dword:800
+    "ZFilterBound"=dword:00100001
+    "SoundType"=dword:0
+    "NoPostRange"=dword:80
+    "SECDisable"=dword:0
+
+    "EdgeCompEn"=dword:1
+    "EdgeCompLeft"=dword:64
+    "EdgeCompRight"=dword:64
+    "EdgeCompUp"=dword:64
+    "EdgeCompDown"=dword:64
+
+    "HalfVGA"=dword:0
+
+    "CalSource"=dword:0
+    "LLX"=dword:66
+    "LLY"=dword:66
+    "LRX"=dword:799
+    "LRY"=dword:66
+    "ULX"=dword:66
+    "ULY"=dword:799
+    "URX"=dword:799
+    "URY"=dword:799
+
+    "IntelPortOrder"=dword:7
+    "TIDReadMode"=dword:0
+    "Priority"=dword:64

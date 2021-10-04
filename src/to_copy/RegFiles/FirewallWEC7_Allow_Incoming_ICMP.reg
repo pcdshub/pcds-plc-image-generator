@@ -1,0 +1,13 @@
+REGEDIT4
+; Export of registry keys on 2021-06-23 at 21:19
+; OS version: 7.0 build: 2882 image: CX51x0 HPS 6.08g
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Beckhoff\CxConfig\Firewall\Rules\rule15]
+    "filterId"=hex:37,00,01,00,00,00,00,00
+    "Verbose"="Allow ICMP type 8, code 0"
+    "description"="Allow ICMP echo request"
+    "Mask"=dword:40
+    "Type"=dword:8
+    "Code"=dword:0
+    "Protocol"=dword:1
+    "Flags"=dword:0

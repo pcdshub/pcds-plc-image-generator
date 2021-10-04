@@ -1,0 +1,8 @@
+*.sw[op]
+/images
+__pycache__
+/dist
+tags
+/build
+*.zip
+.DS_Store

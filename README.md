@@ -1,20 +1,34 @@
-Registry files for initial configuration of Beckhoff CX50xx PLCs
-================================================================
+Registry files for initial configuration of Beckhoff PLCs for PCDS usage.
 
-1. Copy the contents of, e.g., `CBx053_CE600_HPS_v406b_TC31_B4022.29.zip` to an
-   empty SD card
-2. Run `python create.py` to update PLC name + IP address registry files in
-   `RegFiles` from `templates`
-3. Replace the `RegFiles` contents on the SD card with that of this repository
-   (`to_copy\RegFiles`)
-4. Copy `to_copy\System` from the repository root to the card, merging with the
-   destination files
-5. Start up the PLC
-6. Likely the PLC name + AMS Net ID did not get applied, so navigate to
-   \RegFiles using explorer and double click:
-    a. `ident.reg` 
-    b. `ams_net_id.reg`
+Installation
+============
 
+Requires Python 3.8+ and dependencies in ``requirements.txt``.
+
+```bash
+$ pip install -r requirements.txt
+```
+
+How to use
+----------
+
+1. Run the PLC image generator with your appropriate settings.
+```bash
+# Console usage:
+$ python console.py --help
+
+# For a cx50xx named "plc_name" and an IP address of 1.2.3.4, run:
+$ python console.py --model cx50xx plc_name 1.2.3.4 'plc description here'` 
+
+# Alternatively, run the GUI and enter parameters there:
+$ python gui.py
+```
+2. Mount your PLC CF card. Delete all files on it.
+3. Navigate to ``images/plc_name``.
+4. Copy all files generated here onto your PLC CF card.
+5. Eject it safely.
+6. Insert the CF card into the PLC and boot it up.
+7. Verify your settings were applied correctly.
 
 Notes
 -----

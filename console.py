@@ -43,7 +43,7 @@ def write_files(regfiles_path, plc_name, ip_address, plc_description=None):
 
     ip_address : str
         The PLC IP address.
-        
+
     description : str, optional
         The PLC description, defaulting to plc_name.
     """
@@ -96,7 +96,9 @@ def _download_status(blocknr, blocksize, size):
     print(f"\rDownload status: {percent:.2f}%")
 
 
-def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete=False):
+def generate_image(
+    plc_model, plc_name, ip_address, plc_description, auto_delete=False
+):
     """
     Fill in templated reg files (in ``TEMPLATE_PATH``) with the provided
     settings.
@@ -111,7 +113,7 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
 
     ip_address : str
         The PLC IP address.
-        
+
     description : str, optional
         The PLC description, defaulting to plc_name.
 
@@ -127,7 +129,10 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
 
     source_image_path = IMAGE_ROOT / pathlib.Path(image_url).name
     if not source_image_path.exists():
-        print(f"{source_image_path} does not exist; downloading it from {image_url}...")
+        print(
+            f"{source_image_path} does not exist; "
+            f"downloading it from {image_url}..."
+        )
         urllib.request.urlretrieve(
             image_url,
             source_image_path,
@@ -138,7 +143,8 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
     plc_root = dest_image_root / plc_name
 
     if plc_root.exists():
-        if auto_delete or input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
+        question = f"Remove {plc_root} first? [yN] "
+        if auto_delete or input(question).lower() in ("y", "yes"):
             shutil.rmtree(plc_root)
 
     print(f"* Creating {plc_root}")
@@ -148,7 +154,11 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
     extract_plc_image(source_image_path, dest_image_root)
 
     print(f"* Copying {source_image_path} to {plc_root}")
-    shutil.copytree(dest_image_root / source_image_path.stem, plc_root, dirs_exist_ok=True)
+    shutil.copytree(
+        dest_image_root / source_image_path.stem,
+        plc_root,
+        dirs_exist_ok=True
+    )
 
     print(f"* Removing default RegFiles in {plc_root/'RegFiles'}")
     shutil.rmtree(plc_root / "RegFiles")

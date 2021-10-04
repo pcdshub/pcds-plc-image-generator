@@ -5,7 +5,7 @@ import pathlib
 import subprocess
 import sys
 import tkinter as tk
-from tkinter import ttk
+import tkinter.ttk
 
 from console import MODEL_TO_URL, generate_image
 

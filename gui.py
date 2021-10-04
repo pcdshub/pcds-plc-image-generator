@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def open_directory(path):
+    """Open 'path' in explorer/finder/etc."""
     if sys.platform == "win32":
         return os.startfile(path)
     if sys.platform == "darwin":
@@ -21,6 +22,7 @@ def open_directory(path):
 
 
 def create_window():
+    """Create and return a Tkinter GUI window."""
     window = tk.Tk()
     window.title("PCDS PLC Image Generator")
 
@@ -90,6 +92,7 @@ def create_window():
 
 
 def main():
+    """Create the main tk window and run the main loop."""
     window = create_window()
     window.mainloop()
 

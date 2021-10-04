@@ -29,6 +29,24 @@ MODEL_TO_URL = {
 
 
 def write_files(regfiles_path, plc_name, ip_address, plc_description=None):
+    """
+    Fill in templated reg files (in ``TEMPLATE_PATH``) with the provided
+    settings.
+
+    Parameters
+    ----------
+    regfiles_path : pathlib.Path
+        The destination path for the generated files.
+
+    plc_name : str
+        The PLC name.
+
+    ip_address : str
+        The PLC IP address.
+        
+    description : str, optional
+        The PLC description, defaulting to plc_name.
+    """
     plc_name = plc_name.strip()
 
     assert len(plc_name), "PLC name cannot be empty"
@@ -67,16 +85,39 @@ def write_files(regfiles_path, plc_name, ip_address, plc_description=None):
 
 
 def extract_plc_image(image_zipfile, destination):
+    """Extract ``image_zipfile`` to ``destination``."""
     with zipfile.ZipFile(image_zipfile, "r") as zf:
         zf.extractall(destination)
 
 
 def _download_status(blocknr, blocksize, size):
+    """Report download status from urlretrieve to the console."""
     percent = 100.0 * (blocknr * blocksize) / size
     print(f"\rDownload status: {percent:.2f}%")
 
 
 def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete=False):
+    """
+    Fill in templated reg files (in ``TEMPLATE_PATH``) with the provided
+    settings.
+
+    Parameters
+    ----------
+    plc_model : str
+        PLC generic model (see ``MODEL_TO_URL``).
+
+    plc_name : str
+        The PLC name.
+
+    ip_address : str
+        The PLC IP address.
+        
+    description : str, optional
+        The PLC description, defaulting to plc_name.
+
+    auto_delete : bool, optional
+        Automatically delete old generated image files.  Defaults to False.
+    """
     try:
         image_url = MODEL_TO_URL[plc_model]
     except KeyError:
@@ -121,6 +162,7 @@ def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete
 
 
 def _build_argparser():
+    """Build the console argparse.ArgumentParser."""
     parser = argparse.ArgumentParser()
 
     parser.description = "PLC image creator"

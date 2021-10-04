@@ -3,6 +3,7 @@ import ipaddress
 import pathlib
 import shutil
 import sys
+import urllib.request
 import zipfile
 
 import jinja2
@@ -18,6 +19,13 @@ TEMPLATE_PATH = (MODULE_PATH / "src" / "templates").absolute()
 TO_COPY_PATH = (MODULE_PATH / "src" / "to_copy").absolute()
 
 REGISTRY_FILES = TEMPLATE_PATH.glob("*.reg")
+
+
+MODEL_TO_URL = {
+    "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
+    "cx50xx": "https://download.beckhoff.com/download/Software/embPC-Control/C6915/0000/CE/TC3/CBx053_CE600_HPS_v408g_TC31_B4024.10.zip",   # noqa: E501
+    "cx51xx": "https://download.beckhoff.com/download/Software/embPC-Control/CX51xx/CE/TC3/CBxx63_WEC7_HPS_v608g_TC31_B4024.10.zip",  # noqa: E501
+}
 
 
 def write_files(regfiles_path, plc_name, ip_address, plc_description=None):
@@ -63,30 +71,39 @@ def extract_plc_image(image_zipfile, destination):
         zf.extractall(destination)
 
 
-def interactive_main():
-    plc_name = input("PLC name? ")
-    plc_description = input("PLC description? ") or None
-    ip_address = input("IP Address to be used for AMS NetID? ")
-    return generate_image(plc_name, ip_address, plc_description)
+def _download_status(blocknr, blocksize, size):
+    percent = 100.0 * (blocknr * blocksize) / size
+    print(f"\rDownload status: {percent:.2f}%")
 
 
-def generate_image(plc_name, ip_address, plc_description):
+def generate_image(plc_model, plc_name, ip_address, plc_description, auto_delete=False):
+    try:
+        image_url = MODEL_TO_URL[plc_model]
+    except KeyError:
+        raise ValueError(
+            f"Invalid PLC model; choose from {tuple(MODEL_TO_URL)}"
+        )
+
+    image_name = pathlib.Path(pathlib.Path(image_url).name)
+    if not image_name.exists():
+        print(f"{image_name} does not exist; downloading it from {image_url}...")
+        urllib.request.urlretrieve(image_url, image_name, reporthook=_download_status)
+
     image_root = pathlib.Path("images").resolve()
     plc_root = image_root / plc_name
 
     if plc_root.exists():
-        if input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
+        if auto_delete or input(f"Remove {plc_root} first? [yN] ").lower() in ("y", "yes"):
             shutil.rmtree(plc_root)
 
     print(f"* Creating {plc_root}")
     plc_root.mkdir(exist_ok=True, parents=True)
 
-    image_name = "CBxx63_WEC7_HPS_v608g_TC31_B4024.10"
     print(f"* Extracting {image_name} to {image_root}")
-    extract_plc_image(MODULE_PATH / f"{image_name}.zip", image_root)
+    extract_plc_image(MODULE_PATH / image_name, image_root)
 
-    print(f"* Copying {image_root/image_name} to {plc_root}")
-    shutil.copytree(image_root / image_name, plc_root, dirs_exist_ok=True)
+    print(f"* Copying {image_root/image_name.stem} to {plc_root}")
+    shutil.copytree(image_root / image_name.stem, plc_root, dirs_exist_ok=True)
 
     print(f"* Removing default RegFiles in {plc_root/'RegFiles'}")
     shutil.rmtree(plc_root / "RegFiles")
@@ -113,6 +130,15 @@ def _build_argparser():
 
     parser.add_argument(
         "ip_address", type=str, help="PLC IP Address to use for AMS Net ID"
+    )
+
+    parser.add_argument(
+        "--model",
+        type=str,
+        help="PLC model",
+        dest="plc_model",
+        default="cx50xx",
+        choices=tuple(MODEL_TO_URL)
     )
 
     parser.add_argument("plc_description", type=str, help="PLC Description")

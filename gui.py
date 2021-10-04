@@ -32,7 +32,7 @@ def create_window():
         nonlocal row
         row += 1
         for idx, widget in enumerate(widgets):
-            widget.grid(row=row, column=idx)
+            widget.grid(row=row, column=idx, sticky="ew")
 
     plc_model_combo = tk.ttk.Combobox(
         master=window, values=tuple(MODEL_TO_URL), state="readonly"
@@ -86,6 +86,9 @@ def create_window():
                 open_directory(image_path)
             except Exception:
                 logger.exception("Failed to open the directory %s", image_path)
+
+    window.columnconfigure((0, 1), weight=1)
+    window.rowconfigure(tuple(range(row + 1)), weight=1)
 
     create_button.bind("<Button-1>", create_image)
     return window

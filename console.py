@@ -22,9 +22,9 @@ REGISTRY_FILES = TEMPLATE_PATH.glob("*.reg")
 IMAGE_ROOT = pathlib.Path.cwd()
 
 MODEL_TO_URL = {
-    "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
-    "cx50xx": "https://download.beckhoff.com/download/Software/embPC-Control/C6915/0000/CE/TC3/CBx053_CE600_HPS_v408g_TC31_B4024.10.zip",   # noqa: E501
-    "cx51xx": "https://download.beckhoff.com/download/Software/embPC-Control/CX51xx/CE/TC3/CBxx63_WEC7_HPS_v608g_TC31_B4024.10.zip",  # noqa: E501
+    "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/_History/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
+    "cx50xx": "https://download.beckhoff.com/download/Software/embPC-Control/C6915/0000/CE/TC3/_History/CBx053_CE600_HPS_v408g_TC31_B4024.10.zip",   # noqa: E501
+    "cx51xx": "https://download.beckhoff.com/download/Software/embPC-Control/CX51xx/CE/TC3/_History/CBxx63_WEC7_HPS_v608g_TC31_B4024.10.zip",  # noqa: E501
 }
 
 
@@ -90,9 +90,12 @@ def extract_plc_image(image_zipfile, destination):
         zf.extractall(destination)
 
 
-def _download_status(blocknr, blocksize, size):
+def _download_status(block_num, blocksize, size):
     """Report download status from urlretrieve to the console."""
-    percent = 100.0 * (blocknr * blocksize) / size
+    if (block_num % 10) != 0:
+        return
+
+    percent = 100.0 * (block_num * blocksize) / size
     print(f"\rDownload status: {percent:.2f}%")
 
 

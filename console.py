@@ -24,7 +24,7 @@ IMAGE_ROOT = pathlib.Path.cwd()
 MODEL_TO_URL = {
     "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/_History/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
     "cx50xx": "https://download.beckhoff.com/download/Software/embPC-Control/C6915/0000/CE/TC3/_History/CBx053_CE600_HPS_v408g_TC31_B4024.10.zip",   # noqa: E501
-    "cx51xx": "https://download.beckhoff.com/download/Software/embPC-Control/CX51xx/CE/TC3/_History/CBxx63_WEC7_HPS_v608g_TC31_B4024.10.zip",  # noqa: E501
+    "cx51xx": "https://download.beckhoff.com/download/Software/embPC-Control/CX51xx/CX51x0/CE/TC3/_History/CBxx63_WEC7_HPS_v608g_TC31_B4024.10.zip",  # noqa: E501
 }
 
 

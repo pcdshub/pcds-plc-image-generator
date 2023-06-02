@@ -3,7 +3,7 @@ import ipaddress
 import pathlib
 import shutil
 import sys
-import urllib.request
+import requests
 import zipfile
 
 import jinja2
@@ -136,11 +136,10 @@ def generate_image(
             f"{source_image_path} does not exist; "
             f"downloading it from {image_url}..."
         )
-        urllib.request.urlretrieve(
-            image_url,
-            source_image_path,
-            reporthook=_download_status
-        )
+        image_download_request = requests.get(image_url, verify=False, stream=True)
+        image_download_request.raw.decode_content = True
+        with open(source_image_path, 'wb') as f:
+            shutil.copyfileobj(image_download_request.raw, f)
 
     dest_image_root = pathlib.Path("images").resolve()
     plc_root = dest_image_root / plc_name

@@ -1,5 +1,6 @@
 import argparse
 import ipaddress
+import os
 import pathlib
 import shutil
 import sys
@@ -21,6 +22,7 @@ TO_COPY_PATH = (MODULE_PATH / "src" / "to_copy").absolute()
 REGISTRY_FILES = TEMPLATE_PATH.glob("*.reg")
 IMAGE_ROOT = pathlib.Path.cwd()
 
+DOWNLOAD_USER_AGENT = os.environ.get("DOWNLOAD_USER_AGENT", "Mozilla/5.0")
 MODEL_TO_URL = {
     "cx20x0": "https://download.beckhoff.com/download/Software/embPC-Control/CX20xx/CX20x0/CE/TC3/_History/CBx055_CBx056_WEC7_HPS_v608g_TC31_B4024.10.zip",   # noqa: E501
     "cx50xx": "https://download.beckhoff.com/download/Software/embPC-Control/C6915/0000/CE/TC3/_History/CBx053_CE600_HPS_v408g_TC31_B4024.10.zip",   # noqa: E501
@@ -90,17 +92,61 @@ def extract_plc_image(image_zipfile, destination):
         zf.extractall(destination)
 
 
-def _download_status(block_num, blocksize, size):
-    """Report download status from urlretrieve to the console."""
-    if (block_num % 10) != 0:
-        return
+def get_plc_image(plc_model: str) -> pathlib.Path:
+    """
+    Download (or use a cached version of) the PLC image for the given model.
 
-    percent = 100.0 * (block_num * blocksize) / size
-    print(f"\rDownload status: {percent:.2f}%")
+    As Beckhoff CDNs may block certain user agents, this function will use
+    the environment variable ``DOWNLOAD_USER_AGENT`` to allow runtime
+    customization of the reported user agent.
+
+    Parameters
+    ----------
+    plc_model : str
+        The model number of the PLC (according to MODEL_TO_URL).
+
+    Returns
+    -------
+    pathlib.Path
+        The local path to the downloaded image.
+    """
+    try:
+        image_url = MODEL_TO_URL[plc_model]
+    except KeyError:
+        raise ValueError(
+            f"Invalid PLC model; choose from {tuple(MODEL_TO_URL)}"
+        )
+
+    source_image_path = IMAGE_ROOT / pathlib.Path(image_url).name
+    if source_image_path.exists():
+        print(f"Using already-downloaded {source_image_path}")
+        return source_image_path
+
+    print(f"{source_image_path} does not exist; downloading from {image_url}")
+    req = urllib.request.Request(image_url)
+    req.add_header("User-Agent", DOWNLOAD_USER_AGENT)
+
+    try:
+        with urllib.request.urlopen(req) as fp:
+            contents = fp.read()
+    except Exception as ex:
+        raise RuntimeError(
+            f"Unable to download {image_url} : the download URL may have changed "
+            f"or Beckhoff may have restricted the user agent '{DOWNLOAD_USER_AGENT}'. "
+            f"Try downloading from the above link manually and saving the file "
+            f"in this directory, and report the issue to the ecs-pd team."
+        ) from ex
+    with open(source_image_path, "wb") as fp:
+        fp.write(contents)
+    return source_image_path
 
 
 def generate_image(
-    plc_model, plc_name, ip_address, plc_description, auto_delete=False
+    plc_model: str,
+    plc_name: str,
+    ip_address: str,
+    plc_description: str,
+    auto_delete: bool = False,
 ):
     """
     Fill in templated reg files (in ``TEMPLATE_PATH``) with the provided
@@ -117,31 +163,13 @@ def generate_image(
     ip_address : str
         The PLC IP address.
 
-    description : str, optional
+    plc_description : str
         The PLC description, defaulting to plc_name.
 
     auto_delete : bool, optional
         Automatically delete old generated image files.  Defaults to False.
     """
-    try:
-        image_url = MODEL_TO_URL[plc_model]
-    except KeyError:
-        raise ValueError(
-            f"Invalid PLC model; choose from {tuple(MODEL_TO_URL)}"
-        )
-
-    source_image_path = IMAGE_ROOT / pathlib.Path(image_url).name
-    if not source_image_path.exists():
-        print(
-            f"{source_image_path} does not exist; "
-            f"downloading it from {image_url}..."
-        )
-        urllib.request.urlretrieve(
-            image_url,
-            source_image_path,
-            reporthook=_download_status
-        )
-
+    source_image_path = get_plc_image(plc_model)
     dest_image_root = pathlib.Path("images").resolve()
     plc_root = dest_image_root / plc_name
 
